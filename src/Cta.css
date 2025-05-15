@@ -1,38 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .cta-section {
     background: linear-gradient(135deg, #010101, #000000, #000000);
     color: #fff;
-    padding: 100px 20px;
+    padding: 60px 20px;
     text-align: center;
-  }
-  
-  .cta-content {
+   
+}
+
+.cta-content {
     max-width: 800px;
     margin: 0 auto;
-  }
-  
-  .cta-content h2 {
-    font-size: 2.5rem;
+}
+
+.cta-content h2 {
+    font-size: 1.8rem;
     margin-bottom: 20px;
-  }
-  
-  .cta-content p {
-    font-size: 1.1rem;
+    line-height: 1.4;
+    font-family: 'Press Start 2P', cursive;
+    
+}
+
+.cta-content p {
+    font-size: 0.8rem;
     margin-bottom: 30px;
     color: #ddd;
-  }
-  
-  .cta-button {
+    line-height: 1.8;
+}
+
+.cta-button {
+    display: inline-block;
     background-color: #fff;
-    color: #0f2027;
+    color: #000;
     padding: 12px 30px;
-    font-weight: bold;
-    border-radius: 6px;
+    border-radius: 0;
     text-decoration: none;
-    transition: background 0.3s ease, transform 0.2s ease;
-  }
-  
-  .cta-button:hover {
-    background-color: #ddd;
-    transform: scale(1.05);
-  }
-  
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+    border: 2px solid #fff;
+    box-shadow: 5px 5px 0 #757575;
+}
+
+.cta-button:hover {
+    background-color: #767676;
+    color: #fff;
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 #757575;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .cta-section {
+        padding: 40px 15px;
+    }
+    
+    .cta-content h2 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+    
+    .cta-content p {
+        font-size: 0.6rem;
+        margin-bottom: 25px;
+    }
+    
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.6rem;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .cta-content h2 {
+        font-size: 1rem;
+    }
+    
+    .cta-content p {
+        font-size: 0.5rem;
+        line-height: 2;
+    }
+    
+    .cta-button {
+        padding: 8px 16px;
+    }
+}

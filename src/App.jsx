@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import logoImg from './components/imgs/httpsapp.lottiefiles.comanimationba426f13-0a4c-4488-b7e4-3306491954c2-removebg-preview.png';
+import logoImg from './components/imgs/Untitled design (22).png';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -12,20 +12,23 @@ const Navbar = () => {
         <div className="logo">
           <a href="#home" className="logo-link">
             <img src={logoImg} alt="Eterna Logo" className="logo-image" />
-            <span className="brand-name">Eterna</span>
+            <span className="brand-name" style={{
+              fontFamily: '"Press Start 2P", cursive, monospace',
+              fontSize: '1rem',
+              letterSpacing: '0.05em'
+            }}>Eterna</span>
           </a>
         </div>
 
-        {/* Navigation Links */}
+        {/* Navigation Links - unchanged */}
         <div className={`nav-links ${open ? 'active' : ''}`}>
           <a href="#home">Home</a>
           <a href="#features">Features</a>
           <a href="#about">About</a>
-          {/* Updated link to go to the footer section */}
           <a href="#footer">Contact us</a>
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Menu Toggle - unchanged */}
         <div className="menu-toggle" onClick={() => setOpen(!open)}>
           ☰
         </div>

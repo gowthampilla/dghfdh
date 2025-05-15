@@ -1,32 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .hero {
   position: relative;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 0 20px;
+  background-color: #000;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .hero-content {
-  z-index: 1; /* Keeps content above the video */
+  z-index: 1;
+  color: white;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  max-width: 90%;
 }
 
 .hero-content h1 {
-  font-size: 3rem;
+  font-size: 1.8rem;
   font-weight: normal;
+  margin: 0;
 }
 
+.hero-content .highlight {
+  background-color: white;
+  color: black;
+  padding: 10px 20px; /* increased padding */
+  border-radius: 6px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+
 .hero-content p {
-  font-size: 1.4rem;
-  margin-top: 10px;
+  font-size: 0.9rem;
+  margin-top: 20px;
+  line-height: 1.6;
 }
 
 .hero-content button {
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 10px 20px;
-  font-size: 1rem;
+  font-size: 0.75rem;
+  font-family: 'Press Start 2P', cursive;
   background-color: white;
   color: black;
   border: none;
@@ -38,4 +59,8 @@
 
 .hero-content button:hover {
   background-color: #ccc;
+}
+
+.floating-square {
+  position: absolute;
 }

@@ -1,91 +1,100 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Hero.css';
 
 const Hero = () => {
   const navigate = useNavigate();
+  const [squares, setSquares] = useState([]);
+
+  useEffect(() => {
+    const createSquares = () => {
+      return Array.from({ length: 30 }, (_, i) => ({
+        id: i,
+        size: Math.random() * 20 + 5,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        color: `rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1})`,
+        rotation: Math.random() * 360,
+        rotationSpeed: (Math.random() - 0.5) * 2
+      }));
+    };
+
+    setSquares(createSquares());
+
+    const animate = () => {
+      setSquares(prevSquares =>
+        prevSquares.map(square => {
+          let newX = square.x + square.speedX;
+          let newY = square.y + square.speedY;
+
+          if (newX <= 0 || newX >= window.innerWidth) {
+            newX = Math.max(0, Math.min(window.innerWidth, newX));
+            square.speedX *= -1;
+          }
+          if (newY <= 0 || newY >= window.innerHeight) {
+            newY = Math.max(0, Math.min(window.innerHeight, newY));
+            square.speedY *= -1;
+          }
+
+          return {
+            ...square,
+            x: newX,
+            y: newY,
+            rotation: square.rotation + square.rotationSpeed
+          };
+        })
+      );
+      requestAnimationFrame(animate);
+    };
+
+    const animationId = requestAnimationFrame(animate);
+
+    const handleResize = () => {
+      setSquares(prevSquares =>
+        prevSquares.map(square => ({
+          ...square,
+          x: Math.min(square.x, window.innerWidth),
+          y: Math.min(square.y, window.innerHeight)
+        }))
+      );
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
-    <section
-      className="hero"
-      style={{
-        position: 'relative',
-        height: '100vh',
-        width: '100vw',
-        overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        padding: '0',
-      }}
-    >
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          zIndex: -2,
-        }}
-      >
-        <source src="/IMG_2029.MP4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      {/* Overlay to darken video */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.7)', // 0.7 = 70% transparent black
-          zIndex: -1,
-        }}
-      />
-
-      {/* Content */}
-      <div className="hero-content" style={{ zIndex: 1, color: 'white' }}>
-        <h1 style={{ fontSize: '3rem', fontWeight: 'normal' }}>
-          Eterna <span style={{
-            backgroundColor: 'white',
-            color: 'black',
-            padding: '0 10px',
-            borderRadius: '4px',
-            fontWeight: 'bold'
-          }}>AI</span>
-        </h1>
-        <p style={{ fontSize: '1.4rem', marginTop: '10px' }}>
-          Preserve Your Essence. Forever.
-        </p>
-        <button
-          onClick={() => navigate('/footer')}
+    <section className="hero">
+      {squares.map(square => (
+        <div
+          key={square.id}
+          className="floating-square"
           style={{
-            marginTop: '20px',
-            padding: '10px 20px',
-            fontSize: '1rem',
-            backgroundColor: 'white',
-            color: 'black',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontWeight: 'bold',
-            transition: 'background-color 0.3s ease',
+            position: 'absolute',
+            width: `${square.size}px`,
+            height: `${square.size}px`,
+            left: `${square.x}px`,
+            top: `${square.y}px`,
+            backgroundColor: square.color,
+            transform: `rotate(${square.rotation}deg)`,
+            borderRadius: '2px',
+            willChange: 'transform',
           }}
-          onMouseOver={(e) => e.target.style.backgroundColor = '#ccc'}
-          onMouseOut={(e) => e.target.style.backgroundColor = 'white'}
-        >
-          Get Started
-        </button>
+        />
+      ))}
+
+      <div className="hero-content">
+        <h1>
+          Eterna <span className="highlight">AI</span>
+        </h1>
+        <p>Preserve Your Essence. Forever.</p>
+        <button onClick={() => navigate('/footer')}>Get Started</button>
       </div>
     </section>
   );

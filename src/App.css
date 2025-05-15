@@ -1,16 +1,17 @@
 /* Navbar base */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .navbar {
-  background-color: transparent; /* Transparent background */
+  background-color: black;
   color: white;
   padding: 15px 20px;
-  position: fixed; /* Sticks to the top */
-  top: 0; /* Stick to the top */
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Shadow for effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Container for the navbar */
@@ -20,6 +21,7 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  font-family: 'Press Start 2P', cursive, monospace;
   width: 100%;
 }
 
@@ -47,17 +49,27 @@
   font-weight: 500;
   transition: color 0.3s ease, transform 0.2s ease;
   position: relative;
+  padding-bottom: 5px; /* Space for the pixel underline */
 }
 
-.nav-links a::after {
+/* Pixelated underline effect */
+.nav-links a:hover::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -5px;
-  width: 0%;
-  height: 2px;
-  background-color: #888;
-  transition: width 0.3s;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: 
+    linear-gradient(
+      90deg,
+      #fff 0%, #fff 25%,
+      transparent 25%, transparent 50%,
+      #fff 50%, #fff 75%,
+      transparent 75%, transparent 100%
+    );
+  background-size: 8px 3px; /* Controls pixel size */
+  animation: pixelGlow 0.5s infinite steps(4);
 }
 
 .nav-links a:hover {
@@ -65,8 +77,10 @@
   transform: translateY(-2px);
 }
 
-.nav-links a:hover::after {
-  width: 100%;
+/* Pixel glow animation */
+@keyframes pixelGlow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
 }
 
 /* Hamburger Icon (Mobile) */
@@ -88,14 +102,14 @@
     display: none;
     flex-direction: column;
     gap: 15px;
-    background-color: transparent; /* Transparent background for mobile */
+    background-color: transparent;
     width: 100%;
     padding: 25px 0;
     position: absolute;
     top: 100%;
     left: 0;
     text-align: center;
-    border-radius: 0 0 2px 2px; /* Rounded bottom corners */
+    border-radius: 0 0 2px 2px;
     animation: slideDown 0.4s ease;
   }
 
@@ -137,10 +151,9 @@
   margin-right: 8px;
 }
 
+/* Brand name styling */
 .brand-name {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: white;
-  letter-spacing: 1px;
+  font-family: 'Press Start 2P', cursive, monospace;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
 }
-

@@ -1,0 +1,68 @@
+.neural-section {
+    background: radial-gradient(ellipse at center, #0a0f24 0%, #01010f 100%);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .neural-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-weight: 700;
+    background: linear-gradient(to right, #00f2ff, #0078ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .neural-network-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    height: 400px;
+  }
+  
+  .neural-svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .tooltip {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #0f172a;
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 1px solid #00f2ff44;
+    box-shadow: 0 0 20px #00f2ff22;
+    z-index: 10;
+    max-width: 280px;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .tooltip h4 {
+    margin: 0 0 6px 0;
+    color: #00f2ff;
+    font-size: 1.2rem;
+  }
+  
+  .tooltip p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #d1d5db;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  

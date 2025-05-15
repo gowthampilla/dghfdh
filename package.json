@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "build": "^0.1.4",
+    "framer-motion": "^12.10.5",
+    "gsap": "^3.13.0",
     "my-app2.0": "file:",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
